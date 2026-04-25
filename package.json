@@ -1,0 +1,53 @@
+{
+	"name": "bun-turbo-fullstack-template",
+	"version": "0.1.0",
+	"description": "Bun + Turbo monorepo: Hono API + Vite React TanStack web + Drizzle Postgres.",
+	"license": "MIT",
+	"author": "Shridhar Puntambekar",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/spuntambekar/bun-turbo-fullstack-template.git"
+	},
+	"keywords": [
+		"bun",
+		"turbo",
+		"hono",
+		"react",
+		"tanstack",
+		"drizzle",
+		"postgres",
+		"monorepo",
+		"template"
+	],
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"lint": "turbo lint",
+		"format": "biome format --write .",
+		"check": "biome check --write .",
+		"type-check": "turbo type-check",
+		"db:generate": "turbo db:generate --filter=@pkg/schema",
+		"db:migrate": "turbo db:migrate --filter=@pkg/schema",
+		"db:seed": "turbo db:seed --filter=@pkg/schema",
+		"docker:up": "docker compose -f infra/docker-compose.yml up -d",
+		"docker:down": "docker compose -f infra/docker-compose.yml down",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.4.0",
+		"turbo": "^2.5.0",
+		"typescript": "^5.8.3"
+	},
+	"packageManager": "bun@1.3.3",
+	"lint-staged": {
+		"*.{ts,tsx,js,jsx,json}": [
+			"biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+		]
+	}
+}

@@ -1,0 +1,14 @@
+import { z } from "zod";
+
+const EnvSchema = z.object({
+	DATABASE_URL: z.url(),
+	PORT: z.coerce.number().int().positive().default(3000),
+});
+
+const parsed = EnvSchema.safeParse(process.env);
+if (!parsed.success) {
+	console.error("Invalid API env:", z.prettifyError(parsed.error));
+	process.exit(1);
+}
+
+export const env = parsed.data;

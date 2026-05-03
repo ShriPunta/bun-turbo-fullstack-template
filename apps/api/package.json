@@ -11,10 +11,11 @@
 		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@hono/zod-validator": "^0.4.2",
+		"@hono/zod-openapi": "^1.3.0",
 		"@pkg/schema": "workspace:*",
 		"@pkg/types": "workspace:*",
-		"drizzle-orm": "^0.36.0",
+		"@scalar/hono-api-reference": "^0.10.12",
+		"drizzle-orm": "^0.45.2",
 		"hono": "^4.6.11",
 		"zod": "^4.3.6"
 	},

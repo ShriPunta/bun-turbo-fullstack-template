@@ -10,3 +10,6 @@ allowBuilds:
 blockExoticSubdeps: true
 minimumReleaseAge: 1440
 trustPolicy: no-downgrade
+
+overrides:
+  semver: "^7.8.1"

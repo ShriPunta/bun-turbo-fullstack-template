@@ -18,7 +18,7 @@ function UsersPage() {
 
 	async function load() {
 		try {
-			const res = await fetch(`${env.VITE_API_URL}/users`);
+			const res = await fetch(`${env.VITE_API_URL}/api/users`);
 			const json = await res.json();
 			setUsers(UsersResponse.parse(json));
 		} catch (e) {

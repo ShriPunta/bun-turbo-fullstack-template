@@ -19,6 +19,7 @@ function UsersPage() {
 	async function load() {
 		try {
 			const res = await fetch(`${env.VITE_API_URL}/api/users`);
+			if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
 			const json = await res.json();
 			setUsers(UsersResponse.parse(json));
 		} catch (e) {

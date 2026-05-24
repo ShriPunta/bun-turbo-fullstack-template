@@ -10,7 +10,12 @@ import { usersRouter } from "./routes/users";
 const app = new OpenAPIHono();
 
 app.use("*", logger());
-app.use("*", cors({ origin: env.CORS_ORIGIN }));
+app.use(
+	"*",
+	cors({
+		origin: env.CORS_ORIGIN.length === 1 ? env.CORS_ORIGIN[0] : env.CORS_ORIGIN,
+	}),
+);
 
 app.get("/api/health", (c) => c.json({ ok: true }));
 app.route("/api/users", usersRouter);

@@ -58,6 +58,10 @@ Env (`apps/api/src/env.ts`, `apps/web/src/env.ts`, `packages/schema/src/env.ts`)
 
 Routes are defined with `createRoute` from `@hono/zod-openapi`. Each route declares its request params/body and response schemas once — the OpenAPI spec and runtime validation are both derived from the same definition. The Scalar UI at `/docs` is generated automatically from the spec.
 
+## Known issues
+
+**Postgres bind-mount on Linux CI** — Docker auto-creates `infra/data/pgdata` as `root:root`. On rootless Docker or hardened CI runners the Postgres entrypoint may fail with `Permission denied` because it cannot `chown` the directory. Fix: pre-create the directory with the correct owner (`mkdir -p infra/data/pgdata && chown 999:999 infra/data/pgdata`) or switch to a named volume.
+
 ## License
 
 MIT © Shridhar Puntambekar

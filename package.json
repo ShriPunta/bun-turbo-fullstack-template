@@ -19,10 +19,6 @@
 		"monorepo",
 		"template"
 	],
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	],
 	"scripts": {
 		"dev": "turbo dev",
 		"build": "turbo build",
@@ -44,7 +40,7 @@
 		"turbo": "^2.5.0",
 		"typescript": "^5.8.3"
 	},
-	"packageManager": "bun@1.3.3",
+	"packageManager": "pnpm@11.2.2",
 	"lint-staged": {
 		"*.{ts,tsx,js,jsx,json}": [
 			"biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"

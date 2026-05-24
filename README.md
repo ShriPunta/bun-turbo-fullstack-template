@@ -2,6 +2,16 @@
 
 Bun + Turbo monorepo. Hono API, Vite + React + TanStack Router web, Drizzle + Postgres, Biome, Husky, Zod everywhere.
 
+## Package manager: pnpm + Bun
+
+**pnpm** is the package manager; **bun** is the runtime. They are not interchangeable:
+
+- `pnpm install` / `pnpm add` / `pnpm remove` — install or modify deps
+- `bun run <script>` — execute scripts (never `pnpm run`)
+- `npm`, `yarn`, and `bun install` are blocked
+
+**Why pnpm?** npm's `preinstall`/`postinstall` lifecycle scripts execute arbitrary code during `npm install` with no opt-out, enabling supply-chain attacks via malicious packages. pnpm disables lifecycle scripts on third-party packages by default (`allowBuilds` in `pnpm-workspace.yaml`), requiring explicit opt-in for packages that legitimately need native compilation. This significantly reduces the attack surface from dependency installs.
+
 ## Layout
 
 ```
@@ -17,13 +27,13 @@ infra/        # docker-compose.yml (Postgres 16)
 ## Quickstart
 
 ```bash
-bun install
+pnpm install
 cp .env.example .env
-bun docker:up
-bun db:generate
-bun db:migrate
-bun db:seed
-bun dev
+bun run docker:up
+bun run db:generate
+bun run db:migrate
+bun run db:seed
+bun run dev
 ```
 
 - Web: http://localhost:5173
@@ -33,12 +43,12 @@ bun dev
 
 ## Scripts
 
-- `bun dev` — run web + api via turbo
-- `bun build` — build all workspaces
-- `bun check` — biome format + lint across the repo
-- `bun db:generate` — drizzle-kit generate migration from schema
-- `bun db:migrate` — apply pending migrations
-- `bun db:seed` — insert seed rows
+- `bun run dev` — run web + api via turbo
+- `bun run build` — build all workspaces
+- `bun run check` — biome format + lint across the repo
+- `bun run db:generate` — drizzle-kit generate migration from schema
+- `bun run db:migrate` — apply pending migrations
+- `bun run db:seed` — insert seed rows
 
 ## Zod boundaries
 

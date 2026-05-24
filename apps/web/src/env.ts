@@ -6,8 +6,7 @@ const EnvSchema = z.object({
 
 const parsed = EnvSchema.safeParse(import.meta.env);
 if (!parsed.success) {
-	console.error("Invalid web env:", z.prettifyError(parsed.error));
-	throw new Error("Invalid web env");
+	throw new Error(`Invalid web env:\n${z.prettifyError(parsed.error)}`);
 }
 
 export const env = parsed.data;
